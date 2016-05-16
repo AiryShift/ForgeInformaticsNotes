@@ -1,0 +1,153 @@
+\documentclass{article}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\title{Algorithmic Complexity and Data Structures I}
+\author{Julian Tu}
+\begin{document}
+
+\maketitle
+
+\section{Algorithmic Complexity}
+\subsection{What is it?}
+We use something called Big O notation to define the \emph{time} or \emph{space} it takes for a function or algorithm to run based on the size of its input.
+
+\subsubsection{Some Maths}
+Let \emph{f} and \emph{g} be two functions, where the algorithmic complexity of \emph{f} in terms of Big O notation and \emph{g} is as follows:
+
+\begin{align*}
+	\text{If } f(x) &= O(g(x))\\
+	\text{Then } |f(x)| &\leq M \cdot |g(x)|\\
+\end{align*}
+This is true for all \(x \geq x_0\) and \(M \geq M_0\) for some \(x_0 \text{ and } M_0\).
+
+\subsubsection{Less Maths}
+Note that this implies a few things. First, the whole \(x \geq x_0\) means that \emph{g} need not be larger than \emph{f} for all \emph{x}. The only requirement is that at some point in the future, \emph{g} must be greater than \emph{f} (for \emph{all} input!) and stay greater. 
+
+The second implication comes as a result of \(M \geq M_0\). This means that \emph{constant factors} do not come into play when using Big O notation. Thus, \(O(2N) = O(1000N) = O(N)\). 
+
+The third implication is of a result of the first and the general principle that Big O notation strives to be the \emph{worst case} running for any algorithm. Thus an algorithm that runs in \(O(N)\) time can be described as \(O(2^N)\), though we can see how this is less useful.
+
+However, Big O notation considers summation to be different to multiplication. If an algorithm runs in \(O(N^2 + log\,N)\) time, it can be equally correct to write it as \(O(N^2)\): taking only the largest term. This is because as N gets large, the greatest, and eventually only distinguishing, impact on the growth of algorithm is its fastest growing term. 
+
+\subsection{Examples}
+\subsubsection{Linear Search}
+\begin{verbatim}
+function search(array, searching_for) {
+    forall i = [0, n-1] {
+        if array[i] = searching_for {
+            return i;
+        }
+    return -1;
+}
+\end{verbatim}
+Runs in \(O(N)\).
+
+\subsubsection{Dumb Linear Search}
+\begin{verbatim}
+function search(array, searching_for) {
+    found = -1
+    forall i = [0, 100] {
+        forall i = [0, n-1] {
+            if array[i] = searching_for {
+                found = i;
+            }
+        }
+    }
+    return found;
+}
+\end{verbatim}
+\emph{Still} runs in \(O(N)\).
+
+\subsubsection{Binary Search}
+\begin{verbatim}
+function search(array, searching_for) {
+    low = 0;
+    high = n - 1;
+    while low <= high {
+        mid = (low + high) / 2;
+        if array[mid] == searching_for {
+            return true;
+        } else if array[mid] < searching_for {
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+    return -1
+}
+\end{verbatim}
+Runs in \(O(log\,N)\).
+
+\subsubsection{Iterative Fibonacci}
+\begin{verbatim}
+function fib(n) {
+    a = 0;
+    b = 1;
+    forall i = [1, n] {
+        tmp = a;
+        a = b;
+        b = tmp + b;
+    }
+    return a;
+}
+\end{verbatim}
+Runs in \(O(N)\).
+
+\subsubsection{Recursive Fibonacci}
+\begin{verbatim}
+function fib(n) {
+    if n <= 2 {
+        return 1;
+    } else {
+        return fib(n - 1) + fib(n - 2);
+    }
+}
+\end{verbatim}
+Runs in \(O(2^N)\).
+
+\subsubsection{Finding the highest sum of two pairs of numbers in two arrays}
+\begin{verbatim}
+function highest_sum(array1, array2) {
+    max_sum = 0;
+    forall i = [0, size(array1)) {
+        forall j = [0, size(array2)) {
+            max_sum = max(max_sum, array1[i] + array2[j]);
+        }
+    }
+    return max_sum;
+}
+\end{verbatim}
+Runs in \(O(NM)\), where N and M are the sizes of the arrays.
+
+\subsection{Why you should care}
+Understanding this is all well and good, but why does it actually matter? Informatics problems will be given with data constraints and time constraints. To solve a problem, one needs to be aware of how these two interact with the processing capacity of a computer. A computer can perform \(10^8\) calculations in one second. If you're given one second to compute the answer, and your algorithm runs in \(O(N^2)\) time with \(N \leq 10^5\), your solution will not run in time.
+
+\section{Data Structures}
+Some simple data structures that will come in handy. Be sure to thoroughly understand the principles behind each and potential applications. Concrete implementation is usually left to the standard library of your language of preference.
+
+\subsection{Stack}
+Allows access to elements in order FILO: first in last out. A stack can be imagined as a pile of books, where you only have access to the book on top. Logically, the topmost book will be the last one you put on. A stack provides essentially three methods of interaction: push, pop, peek. The first two insert or remove an item from the stack, and the last looks at the topmost item. 
+
+Try implementing a stack with a flat array, given a maximum size.
+
+\subsubsection{An application}
+Consider the following strings:
+\begin{verbatim}
+(([])[[]]()()[([()])])
+([[][()([[(]]))])
+([]])
+\end{verbatim}
+
+\noindent How can we determine if they are \emph{well-formed}? That is, each opening parenthesis and bracket is matched with its closing pair, and in a way such that they do not intersect. 
+\subsection{Queue}
+Allows access to elements in order FIFO: first in first out. A queue can be imagined as a fair queue in real life. Consequently, a queue is usually used for applications where an order of operations must be maintained, with some operations spawning more operations - functioning like a buffer. It provides three methods of interaction: enqueue, dequeue, peek. Like the stack, the first two insert or remove an item from the queue, and the last looks at the \emph{front} of the queue.
+
+Try implementing a queue with a flat array, given a maximum size, and without shuffling elements on dequeue.
+
+\section{Websites to visit}
+I recommend exploring the past AIO problems from here above the other links\\
+\url{http://orac.amt.edu.au/cgi-bin/train/hub.pl}\\
+\url{https://projecteuler.net/}\\
+\url{https://www.hackerrank.com/}\\
+\end{document}
