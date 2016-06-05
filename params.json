@@ -1,6 +1,6 @@
 {
   "name": "Forge Informatics Notes",
   "tagline": "!Minecraft",
-  "body": "* [Algorithmic Complexity and Simple Data Structures](https://github.com/AiryShift/ForgeInformaticsNotes/blob/master/PDFs/BigO_DataStructures.pdf)\r\n* [Sliding Window and Simple Graph Theory](https://github.com/AiryShift/ForgeInformaticsNotes/blob/master/PDFs/SlidingWindow_GraphTheory_1.pdf)\r\n",
+  "body": "* [Algorithmic Complexity and Simple Data Structures](https://github.com/AiryShift/ForgeInformaticsNotes/blob/master/PDFs/BigO_DataStructures.pdf)\r\n* [Sliding Window and Simple Graph Theory](https://github.com/AiryShift/ForgeInformaticsNotes/blob/master/PDFs/SlidingWindow_GraphTheory_1.pdf)\r\n* [Graph Traversal](https://github.com/AiryShift/ForgeInformaticsNotes/blob/master/PDFs/Graph_Traversal.pdf)",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }
