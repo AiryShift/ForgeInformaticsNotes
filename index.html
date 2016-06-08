@@ -1,3 +1,5 @@
+---
+---
 <!DOCTYPE html>
 <html>
   <head>
@@ -18,6 +20,7 @@
         <h1>Forge Informatics Notes</h1>
         <h2>!Minecraft</h2>
 
+
         <section id="downloads">
           <a href="https://github.com/AiryShift/ForgeInformaticsNotes/zipball/master" class="btn">Download as .zip</a>
           <a href="https://github.com/AiryShift/ForgeInformaticsNotes/tarball/master" class="btn">Download as .tar.gz</a>
@@ -28,11 +31,8 @@
 
     <div class="container">
       <section id="main_content">
-<ul>
-<li><a href="https://github.com/AiryShift/ForgeInformaticsNotes/blob/master/PDFs/BigO_DataStructures.pdf">Algorithmic Complexity and Simple Data Structures</a></li>
-<li><a href="https://github.com/AiryShift/ForgeInformaticsNotes/blob/master/PDFs/SlidingWindow_GraphTheory_1.pdf">Sliding Window and Simple Graph Theory</a></li>
-<li><a href="https://github.com/AiryShift/ForgeInformaticsNotes/blob/master/PDFs/Graph_Traversal.pdf">Graph Traversal</a></li>
-</ul>
+        {% capture myInclude %}{% include notes.md %}{% endcapture %}
+        {{ myInclude | markdownify }}
       </section>
     </div>
 
