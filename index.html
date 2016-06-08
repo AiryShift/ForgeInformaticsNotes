@@ -1,21 +1,41 @@
----
-layout: default
----
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
-<div class="home">
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
 
-  <h1 class="page-heading">Posts</h1>
+    <title>Forge Informatics Notes by AiryShift</title>
+  </head>
 
-  <ul class="post-list">
-    {% for post in site.posts %}
-      <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+  <body>
 
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.github.url }}">{{ post.title }}</a>
-        </h2>
-      </li>
-    {% endfor %}
-  </ul>
+    <header>
+      <div class="container">
+        <h1>Forge Informatics Notes</h1>
+        <h2>!Minecraft</h2>
 
-</div>
+        <section id="downloads">
+          <a href="https://github.com/AiryShift/ForgeInformaticsNotes/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/AiryShift/ForgeInformaticsNotes/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/AiryShift/ForgeInformaticsNotes" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+<ul>
+<li><a href="https://github.com/AiryShift/ForgeInformaticsNotes/blob/master/PDFs/BigO_DataStructures.pdf">Algorithmic Complexity and Simple Data Structures</a></li>
+<li><a href="https://github.com/AiryShift/ForgeInformaticsNotes/blob/master/PDFs/SlidingWindow_GraphTheory_1.pdf">Sliding Window and Simple Graph Theory</a></li>
+<li><a href="https://github.com/AiryShift/ForgeInformaticsNotes/blob/master/PDFs/Graph_Traversal.pdf">Graph Traversal</a></li>
+</ul>
+      </section>
+    </div>
+
+
+  </body>
+</html>
